@@ -14,7 +14,7 @@ module Fwk
       self.module_dependencies = {}
       self.javascript = ActiveSupport::OrderedOptions.new
       self.css = ActiveSupport::OrderedOptions.new
-      self.languages = [:zh, :en, :ja]
+      self.languages = [:zh, :en]
       self.jscss = {}
       self.production_flag = 'N'
       # 加载此文件时,rails的配置还没有开始
