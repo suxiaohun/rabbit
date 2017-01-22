@@ -25,7 +25,18 @@ module Rabbit
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
+    #自动加载lib目录下的文件
     config.autoload_paths << Rails.root.join('lib')
+
+
+    #generator不生成css与js
+    config.generators do |g|
+      g.orm             :active_record
+      g.template_engine :erb
+      g.test_framework  :test_unit, fixture: false
+      g.stylesheets     false
+      g.javascripts     false
+    end
 
   end
 end

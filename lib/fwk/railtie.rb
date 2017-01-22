@@ -13,9 +13,14 @@ module Fwk
       #扩展Rails::Generators::NamedBase
       Rails::Generators::NamedBase.send(:include, Gen::GeneratorExpand)
 
-      # #扩展Erb::Generators::ScaffoldGenerator
+      #扩展Erb::Generators::ScaffoldGenerator
       # require 'rails/generators/erb/scaffold/scaffold_generator'
       # Erb::Generators::ScaffoldGenerator.send(:include, Gen::ScaffoldGeneratorExpand)
+
+
+      #扩展Erb::Generators::ControllerGenerator
+      require 'rails/generators/erb/controller/controller_generator'
+      Erb::Generators::ControllerGenerator.send(:include, Gen::ControllerGeneratorExpand)
 
 
       require 'rails/generators/active_record/migration/migration_generator'
