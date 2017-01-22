@@ -13,13 +13,15 @@ module Fwk
       #扩展Rails::Generators::NamedBase
       Rails::Generators::NamedBase.send(:include, Gen::GeneratorExpand)
 
-      #扩展Erb::Generators::ScaffoldGenerator
-      # require 'rails/generators/erb/scaffold/scaffold_generator'
-      # Erb::Generators::ScaffoldGenerator.send(:include, Gen::ScaffoldGeneratorExpand)
+      # 扩展Erb::Generators::ScaffoldGenerator
+      #TODO scaffold 如何加载自定义模板（原来是放在lib/templates/erb/scaffold下会自动加载，现在不生效）
+      require 'rails/generators/erb/scaffold/scaffold_generator'
+      Erb::Generators::ScaffoldGenerator.send(:include, Gen::ScaffoldGeneratorExpand)
 
 
       #扩展Erb::Generators::ControllerGenerator
       require 'rails/generators/erb/controller/controller_generator'
+      #TODO the same as scaffold
       Erb::Generators::ControllerGenerator.send(:include, Gen::ControllerGeneratorExpand)
 
 

@@ -1,0 +1,27 @@
+Description:
+    for create the module and the initialize files.
+
+Example:
+    rails generate module 01_framework_fwk
+
+    This will create:
+
+              create  modules/01_framework_fwk
+              create  modules/01_framework_fwk/app
+              create  modules/01_framework_fwk/app/controllers
+              create  modules/01_framework_fwk/app/helpers
+              create  modules/01_framework_fwk/app/models
+              create  modules/01_framework_fwk/app/views
+              create  modules/01_framework_fwk/config
+              create  modules/01_framework_fwk/config/initializers
+              create  modules/01_framework_fwk/config/locales
+              create  modules/01_framework_fwk/db
+              create  modules/01_framework_fwk/db/migrate
+              create  modules/01_framework_fwk/lib
+              create  modules/01_framework_fwk/lib/fwk
+              create  modules/01_framework_fwk/initializers/init_fwk.rb
+              create  modules/01_framework_fwk/config/routes.rb
+              create  modules/01_framework_fwk/config/locales/en.yml
+              create  modules/01_framework_fwk/config/locales/zh.yml
+              create  modules/01_framework_fwk/lib/init_data.rb
+
