@@ -25,6 +25,29 @@ module Rabbit
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
+
+    # 配置加载module模块
+    config.fwk.modules.each do |module_name|
+      config.paths.keys.each do |key|
+        next unless config.paths[key].to_ary.is_a?(Array)
+        file_path ="#{config.fwk.module_folder}/#{config.fwk.module_mapping[module_name]}/#{key}"
+
+        real_file_path = "#{config.root}/#{file_path}"
+        if File.exist?(real_file_path)
+          #TODO 这一段暂时搁置，后边看看是如何执行的？
+          if key.eql?('config/database')
+            config.paths[key].to_a[0] = file_path
+          else
+            #系统提供的方法，添加目录
+            config.paths[key].unshift(file_path)
+          end
+        end
+
+      end
+
+    end
+
+
     #自动加载lib目录下的文件
     config.autoload_paths << Rails.root.join('lib')
 

@@ -2,3 +2,4 @@
 Fwk::MenuAndFunctionManager.map do |map|
 
 end
+

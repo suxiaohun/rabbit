@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Sys Users</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Login name</th>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>Full name</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Locked flag</th>
+      <th>Locked time</th>
+      <th>Locked until at</th>
+      <th>Status</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @sys_users.each do |sys_user| %>
+      <tr>
+        <td><%= sys_user.login_name %></td>
+        <td><%= sys_user.first_name %></td>
+        <td><%= sys_user.last_name %></td>
+        <td><%= sys_user.full_name %></td>
+        <td><%= sys_user.email %></td>
+        <td><%= sys_user.phone %></td>
+        <td><%= sys_user.locked_flag %></td>
+        <td><%= sys_user.locked_time %></td>
+        <td><%= sys_user.locked_until_at %></td>
+        <td><%= sys_user.status %></td>
+        <td><%= link_to 'Show', sys_user %></td>
+        <td><%= link_to 'Edit', edit_user_path(sys_user) %></td>
+        <td><%= link_to 'Destroy', sys_user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Sys User', new_user_path %>

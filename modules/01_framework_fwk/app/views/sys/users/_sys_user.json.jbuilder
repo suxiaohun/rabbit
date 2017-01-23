@@ -1,0 +1,2 @@
+json.extract! sys_user, :id, :login_name, :first_name, :last_name, :full_name, :email, :phone, :locked_flag, :locked_time, :locked_until_at, :status, :created_at, :updated_at
+json.url sys_user_url(sys_user, format: :json)
