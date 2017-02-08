@@ -1,0 +1,2 @@
+module Sys::CommonHelper
+end

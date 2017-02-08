@@ -1,0 +1,72 @@
+<%= form_for(sys_user,:url=>{:action=>'create'} ) do |f| %>
+  <% if sys_user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(sys_user.errors.count, "error") %> prohibited this sys_user from being saved:</h2>
+
+      <ul>
+      <% sys_user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :login_name %>
+    <%= f.text_field :login_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :full_name %>
+    <%= f.text_field :full_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+  </div>
+
+  <div class="field">
+    <%= f.label :phone %>
+    <%= f.text_field :phone %>
+  </div>
+
+  <div class="field">
+    <%= f.label :locked_flag %>
+    <%= f.text_field :locked_flag %>
+  </div>
+
+  <div class="field">
+    <%= f.label :locked_time %>
+    <%= f.number_field :locked_time %>
+  </div>
+
+  <div class="field">
+    <%= f.label :locked_until_at %>
+    <%= f.datetime_select :locked_until_at %>
+  </div>
+
+  <div class="field">
+    <%= f.label :last_login_at %>
+    <%= f.datetime_select :last_login_at %>
+  </div>
+
+  <div class="field">
+    <%= f.label :status %>
+    <%= f.text_field :status %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
