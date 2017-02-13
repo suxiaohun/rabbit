@@ -1,0 +1,17 @@
+.login_div {
+    margin: 150px auto;
+    width: 330px;
+    border: 1px solid black;
+}
+
+.login_div ul>li{
+    list-style: none;
+}
+
+.home_div{
+    margin: 150px auto;
+    width: 330px;
+    font-weight: bolder;
+    font-size: 20px;
+    color: blue;
+}

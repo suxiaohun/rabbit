@@ -2,12 +2,17 @@ class Sys::CommonController < ApplicationController
 
   def index
 
+    1..2.each_with_index do |k,i|
+
+    end
   end
 
   def login
     if request.get?
-      # 注销用户
-      # self.logged_user = nil
+      #重置session,#注销用户
+      # reset_session
+      Sys::Session.sweep('20 minutes')
+      Sys::User.current=nil
     else
       login_authentication
     end
@@ -43,7 +48,9 @@ class Sys::CommonController < ApplicationController
   def successful_authentication(user)
     #设置当前登录用户
     Sys::User.current = user
-    redirect_to({:controller=>'common',:action => 'index'})
+    session[:user_id] = user.id
+    #TODO 登录成功,记录日志
+    redirect_to({:controller => 'common', :action => 'index'})
   end
 
 end

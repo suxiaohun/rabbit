@@ -28,6 +28,8 @@ gem 'uuid'
 
 gem 'seedbank'
 
+gem 'activerecord-session_store'
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
