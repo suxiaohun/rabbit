@@ -49,8 +49,10 @@ module Rabbit
 
 
     #自动加载lib目录下的文件
-    config.autoload_paths << Rails.root.join('lib')
+    # config.autoload_paths << Rails.root.join('lib')
 
+    # auto load class in lib and module lib
+    config.autoload_paths += config.paths['lib'].expanded
 
     #generator不生成css与js
     config.generators do |g|
