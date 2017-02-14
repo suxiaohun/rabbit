@@ -1,6 +1,5 @@
 module MenuFunctionManager
-  # module_function :map,:menus
-  class << self
+  # class << self
     def map
       @menus ||= {}
       @function_groups ||= {}
@@ -19,7 +18,10 @@ module MenuFunctionManager
       @menus
     end
 
-  end
+    module_function :map,:menus
+
+
+    # end
 
   class Mapper
     def initialize
@@ -53,18 +55,24 @@ module MenuFunctionManager
       if code.present? && hash && hash.any?
         @menus[code.to_sym] ||= {}
         tmp[:code]= code
-        tmp[:name] = hash[:zh] if hash[:zh]
+        tmp[:name] = hash[:zh][:name] if hash[:zh]
+        tmp[:description] = hash[:zh][:description] if hash[:zh]
         tmp[:sequence] = hash[:sequence] ? hash[:sequence] : 10
-        tmp[:parent_code] = parent_code if parent_code.present?
+        #TODO 后期优化下，设置parent_code,暂时以递归优先，解决分开设置menu时，parent_code没有正确加载的问题
+        if parent_code.present?
+          tmp[:parent_code] = parent_code
+        elsif hash[:parent_code].present?
+          tmp[:parent_code] = hash[:parent_code]
+        end
         #菜单一共有两种：1.实的，有对应的链接；2.虚的，下面继续挂菜单(递归处理)
         if hash[:children] && hash[:children].any?
           hash[:children].each do |key, child|
-            handle_menu(key, child, parent_code)
+            handle_menu(key, child, code)
           end
         else
           tmp[:url] = hash[:url] if hash[:url]
         end
-
+        #@menus的key不会重复，但如果配置文件中添加了重复的key，属性会合并，按照加载顺序，以最后加载的为准
         @menus[code.to_sym].merge!(tmp)
       end
     end

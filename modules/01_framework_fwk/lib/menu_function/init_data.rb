@@ -31,6 +31,13 @@ MenuFunctionManager.map do |map|
       }
   }
 
+  map.menu :wm_quotation, {
+      :zh => {:name => '采购报价单', :description => '采购报价单'},
+      :sequence => 10,
+      :parent_code => :wm_purchase_manage,
+      :url => '/wm_quotations/index'
+  }
+
 
 end
 
