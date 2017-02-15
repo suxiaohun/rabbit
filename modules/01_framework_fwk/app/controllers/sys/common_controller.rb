@@ -2,9 +2,11 @@ class Sys::CommonController < ApplicationController
 
   def index
 
-    1..2.each_with_index do |k,i|
 
-    end
+  end
+
+  def test
+
   end
 
   def login
@@ -13,6 +15,7 @@ class Sys::CommonController < ApplicationController
       # reset_session
       Sys::Session.sweep('20 minutes')
       Sys::User.current=nil
+      render :layout => 'login'
     else
       login_authentication
     end

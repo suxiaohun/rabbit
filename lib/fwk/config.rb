@@ -10,7 +10,7 @@ module Fwk
       self.modules = []
       self.module_mapping = {}
       self.module_folder = 'modules'
-      self.framework_modules = [:fwk]
+      self.framework_modules = [:fwk, :ast]
       self.module_dependencies = {}
       self.javascript = ActiveSupport::OrderedOptions.new
       self.css = ActiveSupport::OrderedOptions.new
