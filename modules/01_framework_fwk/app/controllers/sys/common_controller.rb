@@ -1,4 +1,6 @@
 class Sys::CommonController < ApplicationController
+  #login有单独的layout
+  layout 'login', :only => [:login]
 
   def index
 
@@ -9,13 +11,17 @@ class Sys::CommonController < ApplicationController
 
   end
 
+
+  def login_out
+
+  end
+
   def login
     if request.get?
       #重置session,#注销用户
       # reset_session
       Sys::Session.sweep('20 minutes')
       Sys::User.current=nil
-      render :layout => 'login'
     else
       login_authentication
     end

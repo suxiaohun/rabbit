@@ -8,6 +8,8 @@ class ApplicationController < ActionController::Base
   def check_if_require_login
     # 如果session中存在user_id,则无需登录,否则转向登录页面
     if session[:user_id]
+      #如果会话存在，则设置current_user（防止Sys::User.current失效）
+      Sys::User.current = Sys::User.find(session[:user_id])
       true
     else
       require_login

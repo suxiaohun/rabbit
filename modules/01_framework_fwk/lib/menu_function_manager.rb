@@ -10,7 +10,7 @@ module MenuFunctionManager
       else
         mapper
       end
-      @menus = mapper.mapped_menus
+      @menus.merge! mapper.mapped_menus
     end
 
 

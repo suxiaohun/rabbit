@@ -1,4 +1,4 @@
-html,body{
+html, body {
     margin: 0 auto;
     height: 100%;
     width: 100%;
@@ -10,22 +10,62 @@ html,body{
     border: 1px solid black;
 }
 
-.login_div ul>li{
+.login_div ul > li {
     list-style: none;
 }
 
-.home_div{
+.home_div {
     margin: 150px auto;
     /*width: 330px;*/
     font-weight: bolder;
     font-size: 20px;
     color: blue;
 }
-.tab-div{
+
+.tab-div {
     display: inline-block;
-    padding-right: 20px;
+    margin-right: 25px;
+    background: darkslateblue;
+}
+.current{
+    background: red;
 }
 
-.current-tab{
-    color: red;
+.nav-tab{
+    color: white;
+    font-weight: bolder;
+    text-decoration: none;
+}
+.nav-tab:link,.nav-tab:hover,.nav-tab:visited,.nav-tab:active{
+    color: white;
+}
+
+
+.header {
+    height: 70px;
+    margin-top: -100px;
+    background: #383a4c;
+    color: white;
+}
+
+.header-nav1 {
+    font-size: 20px;
+    font-weight: bolder;
+    float: left;
+    width: 64%;
+    line-height: 70px;
+}
+
+.header-nav2 {
+    float: left;
+    width: 35%;
+    min-width: 100px;
+    height: 100%;
+    line-height: 70px;
+    text-align: right;
+    padding-right: 10px;
+}
+
+.header-nav2 > a:hover, .header-nav2 > a:active, .header-nav2 > a:link, .header-nav2 > a:visited {
+    color: white;
 }

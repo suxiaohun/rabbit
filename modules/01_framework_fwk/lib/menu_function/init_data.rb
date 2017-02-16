@@ -11,12 +11,16 @@ MenuFunctionManager.map do |map|
                   :wm_material_type => {
                       :zh => {:name => '物料类别', :description => '物料类别'},
                       :sequence => 10,
-                      :url => '/wm_material_types/index'
+                      :zone_code=> 'MM_MANAGE',
+                      :controller => '/wm_material_types',
+                      :action => 'index'
                   },
                   :wm_material_record => {
                       :zh => {:name => '物料档案', :description => '物料档案'},
                       :sequence => 20,
-                      :url => '/wm_materials/index'
+                      :zone_code=> 'MM_MANAGE',
+                      :controller => '/wm_materials',
+                      :action => 'index',
                   }
               }
           },
@@ -35,8 +39,17 @@ MenuFunctionManager.map do |map|
       :zh => {:name => '采购报价单', :description => '采购报价单'},
       :sequence => 10,
       :parent_code => :wm_purchase_manage,
-      :url => '/wm_quotations/index'
+      :zone_code=> 'MM_MANAGE',
+      :controller => '/wm_quotations',
+      :action => 'index',
   }
+
+
+
+
+
+
+
 
 
 end

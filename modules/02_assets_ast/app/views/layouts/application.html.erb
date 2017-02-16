@@ -9,9 +9,15 @@
 </head>
 
 <body>
-<div style="background: greenyellow;height: 100%; padding: 100px 0 10px 0;box-sizing: border-box ;">
-  <div style="height: 70px; margin-top: -100px; background: #BBE8F2;">1</div>
-  <div style="height: 30px; background: #e6f259;">
+<div style="height: 100%; padding: 100px 0 20px 0;box-sizing: border-box ;">
+  <div class="header">
+    <div class="header-nav1">物业管理系统</div>
+    <div class="header-nav2">
+      <%= Sys::User.current.try(:login_name) %>&nbsp;&nbsp;|&nbsp;&nbsp;
+      <a href="/login">退出系统</a>
+    </div>
+  </div>
+  <div style="height: 30px; background: #41649a;line-height: 30px;color: white;padding-left: 200px;">
     <%= navigation_tabs %>
   </div>
   <!--<div style="padding: 0 0 0 200px;height: 100%;">-->
@@ -27,7 +33,9 @@
       <%= yield %>
     </div>
   </div>
-  <div style="height: 10px; background: #d91acd;position: fixed;bottom: 0;width: 100%">4</div>
+  <div style="height: 20px; background: #383a4c;position: fixed;bottom: 0;width: 100%;text-align: center;color: white;">
+    Copyright &copy;繁华如烟
+  </div>
 
 
   <!--<div style="height: 10px; background: #d91acd;">4</div>-->

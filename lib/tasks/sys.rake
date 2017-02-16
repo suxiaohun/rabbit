@@ -23,6 +23,7 @@ namespace :sys do
     begin
       rails_config = Rails.application.config
       rails_config.fwk.modules.each do |module_name|
+        next if module_name == 'ast'
         Dir.foreach(File.join(Rails.root, rails_config.fwk.module_folder, rails_config.fwk.module_mapping[module_name], 'lib', 'menu_function')) do |file|
           next if file == '.' or file == '..'
           data_file_path = File.join(Rails.root, rails_config.fwk.module_folder, rails_config.fwk.module_mapping[module_name], 'lib', 'menu_function', file)
