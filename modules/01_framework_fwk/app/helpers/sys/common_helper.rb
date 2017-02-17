@@ -6,7 +6,7 @@ module Sys::CommonHelper
     tabs.each do |tab|
       next unless tab.fav_menu_code == '11'
       style = ''
-      if tab.code=='HOME_PAGE'
+      if tab.code == Sys::Tab.current_tab.code
         style = 'tab-div current'
       else
         style = 'tab-div'
@@ -18,7 +18,12 @@ module Sys::CommonHelper
   end
 
   def navigation_menus
-
+    lis = ''
+    menus = Sys::Menu.where("recursion_code like '%#{Sys::Menu.current_menu.recursion_code[0,3]}%'")
+    menus.each do |mm|
+      lis<<content_tag(:div,mm.name || '')
+    end
+    lis.html_safe
   end
 
 end

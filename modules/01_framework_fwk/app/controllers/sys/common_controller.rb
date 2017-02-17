@@ -1,4 +1,6 @@
 class Sys::CommonController < ApplicationController
+
+  skip_before_action :set_current_menu, :only => [:login]
   #login有单独的layout
   layout 'login', :only => [:login]
 

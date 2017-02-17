@@ -25,13 +25,17 @@ MenuFunctionManager.map do |map|
   map.function :todo_task, {
       :todo_task => {
           :zh => {:name => '待办事项', :description => '待办事项'},
-          '/common' => ['index']
+          'sys/common' => ['index']
       },
+  }
+
+  map.function :login_record, {
       :login_record => {
           :zh => {:name => '登录历史', :description => '登录历史'},
-          '/common' => ['login_reocrds']
+          'sys/common' => ['login_records']
       }
   }
+
 
 
 end

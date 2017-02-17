@@ -3,12 +3,12 @@ class Sys::Menu < ApplicationRecord
 
 
 
-  def self.current_menu_code
-    @current_menu_code
+  def self.current_menu
+    @current_menu
   end
 
 
-  def self.current_menu_code=(code)
-    @current_menu_code = code
+  def self.current_menu=(menu)
+    @current_menu = menu
   end
 end

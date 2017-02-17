@@ -48,6 +48,14 @@ namespace :sys do
       puts "  #{BOLD}#{GREEN}success create menu => #{v[:code]}#{CLEAR}"
     end
     puts "#{BOLD}#{BLUE}|----init menus done.----|#{CLEAR}"
+    puts "#{BOLD}#{YELLOW}|----start recursion menus----|#{CLEAR}"
+    #递归处理所有菜单，方便以后查询及操作
+    tabs = Sys::Tab.all
+    tabs.each_with_index do |tab, index|
+      index='00'+(index+1).to_s
+      recursion_menu(tab.code,index)
+    end
+    puts "#{BOLD}#{YELLOW}|----recursion menus done.----|#{CLEAR}"
 
 
     puts "#{BOLD}#{BLUE}|----start init functions and permissions ----|#{CLEAR}"
@@ -56,13 +64,13 @@ namespace :sys do
     functions ||= {}
 
     functions.each do |k, v|
-      Sys::Function.create!(:code => v[:code], :name => v[:name], :menu_code => v[:menu_code])
+      Sys::Function.create!(:code => v[:code].upcase, :name => v[:name], :menu_code => v[:menu_code].upcase)
       puts "  #{BOLD}#{GREEN}success create function => #{v[:code]}#{CLEAR}"
 
       #TODO controller/action需要和路由中配置的做比较（即是正确的路由）
       v[:permissions].each do |controller, actions|
         actions.each do |action|
-          Sys::Permission.create!(:function_code => k, :controller => controller, :action => action)
+          Sys::Permission.create!(:function_code => k.upcase, :controller => controller, :action => action)
         end
       end
     end
@@ -70,6 +78,18 @@ namespace :sys do
     puts "#{BOLD}#{BLUE}|----init functions and permissions done.----|#{CLEAR}"
 
 
+  end
+
+
+  #递归处理菜单
+  def recursion_menu(code,index)
+    Sys::Menu.where(:code => code).update_all("recursion_code='#{index}'")
+    menus = Sys::Menu.where(:parent_code => code)
+    if menus
+      menus.each do |menu|
+        recursion_menu(menu.code,index+index[0,3])
+      end
+    end
   end
 
 end

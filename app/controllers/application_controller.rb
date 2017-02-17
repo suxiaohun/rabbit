@@ -10,8 +10,9 @@ class ApplicationController < ActionController::Base
   def set_current_menu(controller=params[:controller], action=params[:action])
     # url_options = {:controller => controller, :action => action}
 
-    Sys::Menu.current_menu_code = Sys::Permission.get_by_url(controller,action)
-    byebug
+    current_menu = Sys::Permission.get_by_url(controller,action).first
+    Sys::Menu.current_menu = current_menu
+    Sys::Tab.current_tab = Sys::Menu.where(:recursion_code=>current_menu.recursion_code[0,3]).first
 
     # permission = Sys::Permission.where(:controller=>controller,:action=>action).first
     # sql = 'select m.code menu_code,m.parent_code   from sys_permissions p left join

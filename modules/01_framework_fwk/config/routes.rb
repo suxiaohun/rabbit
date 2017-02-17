@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
     match 'login' => 'common#login', via: [:get, :post]
     match 'index' => 'common#index', :via => :get
-    match 'common/test' => 'common#test', :via => :get
+    match 'login_records' => 'common#login_records', :via => :get
     match '/' => 'common#index', :via => :get
 
     #

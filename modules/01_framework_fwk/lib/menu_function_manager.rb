@@ -49,15 +49,15 @@ module MenuFunctionManager
 
       if code.present? && hash && hash.any?
         @menus[code.to_sym] ||= {}
-        tmp[:code]= code
+        tmp[:code]= code.upcase
         tmp[:name] = hash[:zh][:name] if hash[:zh]
         tmp[:description] = hash[:zh][:description] if hash[:zh]
         tmp[:sequence] = hash[:sequence] ? hash[:sequence] : 10
         #TODO 后期优化下，设置parent_code,暂时以递归优先，解决分开设置menu时，parent_code没有正确加载的问题
         if parent_code.present?
-          tmp[:parent_code] = parent_code
+          tmp[:parent_code] = parent_code.upcase
         elsif hash[:parent_code].present?
-          tmp[:parent_code] = hash[:parent_code]
+          tmp[:parent_code] = hash[:parent_code].upcase
         end
         #菜单一共有两种：1.实的，有对应的链接；2.虚的，下面继续挂菜单(递归处理)
         if hash[:children] && hash[:children].any?
