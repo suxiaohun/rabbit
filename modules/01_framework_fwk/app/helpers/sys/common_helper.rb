@@ -16,4 +16,9 @@ module Sys::CommonHelper
     end
     tds.html_safe
   end
+
+  def navigation_menus
+
+  end
+
 end

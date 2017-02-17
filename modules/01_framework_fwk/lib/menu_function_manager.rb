@@ -1,44 +1,39 @@
 module MenuFunctionManager
   # class << self
-    def map
-      @menus ||= {}
-      @function_groups ||= {}
-      @functions ||= {}
-      mapper = Mapper.new
-      if block_given?
-        yield mapper
-      else
-        mapper
-      end
-      @menus.merge! mapper.mapped_menus
+  def map
+    @menus ||= {}
+    @functions ||= {}
+    mapper = Mapper.new
+    if block_given?
+      yield mapper
+    else
+      mapper
     end
+    @menus.merge! mapper.mapped_menus
+    @functions.merge! mapper.mapped_functions
+  end
 
 
-    def menus
-      @menus
-    end
+  def menus
+    @menus
+  end
 
-    module_function :map,:menus
+  def functions
+    @functions
+  end
+
+  module_function :map, :menus, :functions
 
 
-    # end
+  # end
 
   class Mapper
     def initialize
       @menus ||= {}
-      @function_groups ||= {}
       @functions ||= {}
     end
 
-    # def function_group(code, hash)
-    #   if code.present? and hash.any?
-    #     hash = hash.dup
-    #     hash[:code] = code.upcase
-    #     handle_function_group(hash)
-    #   end
-    # end
-
-    #加载配置文件中的菜单数据
+    #加载配置文件中的菜单(menu)数据
     def menu(code, hash = {})
       if code.present? and hash.any?
         hash = hash.dup
@@ -70,12 +65,38 @@ module MenuFunctionManager
             handle_menu(key, child, code)
           end
         else
-          tmp[:url] = hash[:url] if hash[:url]
+          tmp[:controller] = hash[:controller] if hash[:controller]
+          tmp[:action] = hash[:action] if hash[:action]
         end
         #@menus的key不会重复，但如果配置文件中添加了重复的key，属性会合并，按照加载顺序，以最后加载的为准
         @menus[code.to_sym].merge!(tmp)
       end
     end
+
+    #加载配置文件中的功能(function)数据
+    def function(code, hash = {})
+      if code.present? and hash.any?
+        handle_function(code, hash)
+      end
+    end
+
+    #处理功能(function)
+    def handle_function(code, hash)
+      tmp = {}
+
+      hash.each do |key, value|
+        value=value.dup
+        if value.delete(:zh)
+          tmp[:code]=key
+          tmp[:name]=value[:zh][:name] if value[:zh].present?
+          tmp[:menu_code]=code
+          tmp[:permissions]=value
+          @functions[key.to_sym] ||= {}
+          @functions[key.to_sym].merge!(tmp)
+        end
+      end
+    end
+
 
     # #递归处理功能组下的子功能
     # def handle_function_group(hash)
@@ -166,13 +187,9 @@ module MenuFunctionManager
       @menus
     end
 
-    # def mapped_function_groups
-    #   @function_groups
-    # end
-    #
-    # def mapped_functions
-    #   @functions
-    # end
+    def mapped_functions
+      @functions
+    end
 
   end
 
