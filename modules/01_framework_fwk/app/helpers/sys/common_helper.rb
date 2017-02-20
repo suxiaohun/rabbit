@@ -12,16 +12,18 @@ module Sys::CommonHelper
         style = 'tab-div'
       end
       # tds << content_tag(:div, content_tag(:div, link_to(tab.name, {:controller => tab.fav_menu_controller, :action => tab.fav_menu_action, :code => tab.code}, {})), {:class => style, :nowrap => 'nowrap'})
-      tds << content_tag(:div, link_to(tab.name, {},{:class => 'nav-tab'}), {:class =>style, :nowrap => 'nowrap'})
+      tds << content_tag(:div, link_to(tab.name, {}, {:class => 'nav-tab'}), {:class => style, :nowrap => 'nowrap'})
     end
     tds.html_safe
   end
 
   def navigation_menus
     lis = ''
-    menus = Sys::Menu.where("recursion_code like '%#{Sys::Menu.current_menu.recursion_code[0,3]}%'")
+    menus = Sys::Menu.where("recursion_code like '%#{Sys::Menu.current_menu.recursion_code[0, 3]}%'")
     menus.each do |mm|
-      lis<<content_tag(:div,mm.name || '')
+      #移除tab页对应的菜单
+      next if mm.parent_code.blank?
+      lis<<content_tag(:div, mm.name || '')
     end
     lis.html_safe
   end
