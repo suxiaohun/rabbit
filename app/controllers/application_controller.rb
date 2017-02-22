@@ -11,6 +11,9 @@ class ApplicationController < ActionController::Base
     # url_options = {:controller => controller, :action => action}
 
     current_menu = Sys::Permission.get_by_url(controller,action).first
+
+    #解决未正确在配置文件中配置function/menu，从而查询不到菜单，系统会报错的问题（暂时默认使用首页菜单）
+    current_menu = Sys::Permission.get_by_url('sys/common','index').first if current_menu.blank?
     Sys::Menu.current_menu = current_menu
     Sys::Tab.current_tab = Sys::Menu.where(:recursion_code=>current_menu.recursion_code[0,3]).first
 

@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Mdm Companies</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Code</th>
+      <th>Name</th>
+      <th>Corporation</th>
+      <th>Phone</th>
+      <th>Email</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @mdm_companies.each do |mdm_company| %>
+      <tr>
+        <td><%= mdm_company.code %></td>
+        <td><%= mdm_company.name %></td>
+        <td><%= mdm_company.corporation %></td>
+        <td><%= mdm_company.phone %></td>
+        <td><%= mdm_company.email %></td>
+        <td><%= link_to 'Show', mdm_company %></td>
+        <td><%= link_to 'Edit', edit_company_path(mdm_company) %></td>
+        <td><%= link_to 'Destroy', mdm_company, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Mdm Company', new_company_path %>

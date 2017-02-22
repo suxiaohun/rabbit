@@ -1,0 +1,1 @@
+json.partial! "mdm_companies/mdm_company", mdm_company: @mdm_company

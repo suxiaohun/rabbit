@@ -1,0 +1,1 @@
+json.array! @mdm_companies, partial: 'mdm_companies/mdm_company', as: :mdm_company

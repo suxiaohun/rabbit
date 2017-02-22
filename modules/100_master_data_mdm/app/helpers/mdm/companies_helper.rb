@@ -1,0 +1,2 @@
+module Mdm::CompaniesHelper
+end

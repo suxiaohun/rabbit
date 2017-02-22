@@ -1,4 +1,4 @@
 #encoding: utf-8
-Fwk::MenuAndFunctionManager.map do |map|
+MenuFunctionManager.map do |map|
 
 end

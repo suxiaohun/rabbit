@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Code:</strong>
+  <%= @mdm_company.code %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @mdm_company.name %>
+</p>
+
+<p>
+  <strong>Corporation:</strong>
+  <%= @mdm_company.corporation %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @mdm_company.phone %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @mdm_company.email %>
+</p>
+
+<%= link_to 'Edit', edit_mdm_company_path(@mdm_company) %> |
+<%= link_to 'Back', mdm_companies_path %>

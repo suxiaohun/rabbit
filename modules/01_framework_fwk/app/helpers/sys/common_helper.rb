@@ -4,15 +4,16 @@ module Sys::CommonHelper
     tabs = Sys::Tab.all
     tds = ''
     tabs.each do |tab|
-      next unless tab.fav_menu_code == '11'
+      next unless tab.fav_url.present?
       style = ''
       if tab.code == Sys::Tab.current_tab.code
         style = 'tab-div current'
       else
         style = 'tab-div'
       end
+
       # tds << content_tag(:div, content_tag(:div, link_to(tab.name, {:controller => tab.fav_menu_controller, :action => tab.fav_menu_action, :code => tab.code}, {})), {:class => style, :nowrap => 'nowrap'})
-      tds << content_tag(:div, link_to(tab.name, {}, {:class => 'nav-tab'}), {:class => style, :nowrap => 'nowrap'})
+      tds << content_tag(:div, link_to(tab.name,tab.fav_url, {:class => 'nav-tab'}), {:class => style, :nowrap => 'nowrap'})
     end
     tds.html_safe
   end
