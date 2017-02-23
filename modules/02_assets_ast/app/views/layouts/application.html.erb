@@ -4,8 +4,58 @@
   <title>Rabbit</title>
   <%= csrf_meta_tags %>
 
-  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%#= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%#= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_link_tag 'application'%>
+  <%= javascript_include_tag 'application' %>
+  <style type="text/css">
+    *{margin: 0;padding: 0}
+    /*body{font-size: 12px;font-family: "宋体","微软雅黑";}*/
+    ul,li{list-style: none;}
+    a:link,a:visited{text-decoration: none;}
+    .list{width: 210px;border-bottom:solid 1px #316a91;}
+    .list ul li{background-color:#383a4c; border-bottom:solid 1px #ffffff; }
+    .list ul li a{padding-left: 20px;color: #fff; font-size:12px; display: block; font-weight:bold; height:36px;line-height: 36px;position: relative;
+    }
+    .list ul li .inactive{ background:url(assets/off.png) no-repeat 184px center;}
+    .list ul li .inactives{background:url(assets/on.png) no-repeat 184px center;}
+    /*.list ul li ul{display: none;}*/
+    .list ul li ul li {  background-color:#383a4c;border: 0 }
+    /*.list ul li ul li ul{display: none;}*/
+    .list ul li ul li a{ padding-left:40px;height:26px;line-height: 26px;}
+    .list ul li ul li ul li { background-color:#d6e6f1; border-color:#6196bb; }
+    .last{ background-color:#d6e6f1; border-color:#6196bb; }
+    .list ul li ul li ul li a{ color:#316a91; padding-left:30px;}
+  </style>
+  <script type="text/javascript">
+
+      function init_side_menu() {
+          $('.inactive').click(function(){
+              if($(this).siblings('ul').css('display')=='none'){
+                  $(this).parent('li').siblings('li').removeClass('inactives');
+                  $(this).addClass('inactives');
+                  $(this).siblings('ul').slideDown(100).children('li');
+                  if($(this).parents('li').siblings('li').children('ul').css('display')=='block'){
+                      $(this).parents('li').siblings('li').children('ul').parent('li').children('a').removeClass('inactives');
+//                      $(this).parents('li').siblings('li').children('ul').slideUp(100);
+
+                  }
+              }else{
+                  //控制自身变成+号
+                  $(this).removeClass('inactives');
+                  //控制自身菜单下子菜单隐藏
+                  $(this).siblings('ul').slideUp(100);
+                  //控制自身子菜单变成+号
+                  $(this).siblings('ul').children('li').children('ul').parent('li').children('a').addClass('inactives');
+                  //控制自身菜单下子菜单隐藏
+                  $(this).siblings('ul').children('li').children('ul').slideUp(100);
+
+                  //控制同级菜单只保持一个是展开的（-号显示）
+                  $(this).siblings('ul').children('li').children('a').removeClass('inactives');
+              }
+          })
+      }
+  </script>
 </head>
 
 <body>
@@ -27,8 +77,11 @@
   <!--</div>-->
   <!--</div>-->
 
-  <div style="height: 100%; background: #D9C666;padding: 0 0 0 200px;box-sizing: border-box;">
-    <div style="background: lightblue;height: 100%;width: 200px;float: left;margin-left: -200px;">
+  <div style="height: 100%; background: #383a4c;padding: 0 0 0 200px;box-sizing: border-box;">
+    <div class="list" style="background: #383a4c;height: 100%;width: 200px;float: left;margin-left: -200px;">
+      <br>
+      <br>
+      <br>
       <%= navigation_menus %>
     </div>
     <div style="background: lightgoldenrodyellow;height: 100%;float: left;width: 100%;overflow-y:auto;">

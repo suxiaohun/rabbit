@@ -30,6 +30,9 @@ html, body {
 .current{
     background: red;
 }
+.current_menu_li{
+    background: #6196bb
+}
 
 .nav-tab{
     color: white;

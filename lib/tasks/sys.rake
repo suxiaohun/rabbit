@@ -86,8 +86,9 @@ namespace :sys do
     Sys::Menu.where(:code => code).update_all("recursion_code='#{index}'")
     menus = Sys::Menu.where(:parent_code => code)
     if menus
-      menus.each do |menu|
-        recursion_menu(menu.code,index+index[0,3])
+      menus.each_with_index do |menu,i|
+        # recursion_menu(menu.code,index+index[0,3])
+        recursion_menu(menu.code,index+(i+1).to_s.rjust(3,'0'))
       end
     end
   end

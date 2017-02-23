@@ -8,14 +8,14 @@ MenuFunctionManager.map do |map|
               :zh => {:name => '待办事项', :description => '待办事项'},
               :sequence => 10,
               :zone_code => 'home_page',
-              :controller => '/common',
+              :controller => 'sys/common',
               :action => 'index',
           },
           :login_record => {
               :zh => {:name => '登录历史', :description => '登录历史'},
               :sequence => 20,
               :zone_code => 'home_page',
-              :controller => '/common',
+              :controller => 'sys/common',
               :action => 'login_records',
           },
 
