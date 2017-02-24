@@ -1,6 +1,8 @@
 class Sys::CommonController < ApplicationController
 
   skip_before_action :set_current_menu, :only => [:login]
+  # after_action :set_csrf_headers, only: [:login]
+
   #login有单独的layout
   layout 'login', :only => [:login]
 
@@ -21,7 +23,7 @@ class Sys::CommonController < ApplicationController
   def login
     if request.get?
       #重置session,#注销用户
-      # reset_session
+      reset_session
       Sys::Session.sweep('20 minutes')
       Sys::User.current=nil
     else
@@ -63,5 +65,17 @@ class Sys::CommonController < ApplicationController
     #TODO 登录成功,记录日志
     redirect_to({:controller => 'common', :action => 'index'})
   end
+
+
+  # protected
+  # def set_csrf_headers
+  #   if request.xhr?
+  #     # Add the newly created csrf token to the page headers
+  #     # These values are sent on 1 request only
+  #     response.headers['X-CSRF-Token'] = "#{form_authenticity_token}"
+  #     response.headers['X-CSRF-Param'] = "#{request_forgery_protection_token}"
+  #   end
+  # end
+
 
 end

@@ -1,0 +1,48 @@
+<script type="text/javascript">
+    var _session_expired_time = 120 * 60;  //当前session过期剩余（秒）
+    var _last_active_time = new Date().getTime(); //最后一次活动的时间
+    var _check_timer = null;//session检查定时器
+    //用户打开页面则开始页面session过期检测
+    $(function () {
+        if (typeof(_start_check_timer) !== 'undefined') _start_check_timer();
+        //页面活动后调用
+        document.documentElement.onkeydown = _update_active_time();
+        document.documentElement.onclick = _update_active_time;
+    });
+
+
+    //开始session检查定时器
+    function _start_check_timer() {
+        //一次检查session是否超时的时间结点
+        var next_check_time = _session_expired_time * 1000 - (new Date().getTime() - _last_active_time );
+
+        _schedule_check_session(next_check_time);
+    }
+    //设置在等待多长时间后弹出警告
+    function _schedule_check_session(time) {
+        if (_check_timer !== null) {
+            clearTimeout(_check_timer);
+        }
+        _check_timer = setTimeout(_check_log_out, time);
+    }
+
+    function _check_log_out() {
+        var _time = new Date().getTime() - _last_active_time;
+        if (_time > _session_expired_time * 1000) {
+            _log_out()
+        } else {
+            _start_check_timer()
+        }
+    }
+
+    //退出系统
+    function _log_out() {
+        window.location.href = '/login';
+    }
+
+    //更新最后一次活动时间
+    function _update_active_time() {
+        _last_active_time = new Date().getTime()
+    }
+
+</script>

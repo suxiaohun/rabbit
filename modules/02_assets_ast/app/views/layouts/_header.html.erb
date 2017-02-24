@@ -1,0 +1,8 @@
+<div class="header">
+  <div class="header-nav1">物业管理系统</div>
+  <div class="header-nav2">
+    <%= Sys::User.current.try(:login_name) %>&nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/login">退出系统</a>
+  </div>
+  <%= render 'sys/common/check_session' %>
+</div>
