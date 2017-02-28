@@ -37,6 +37,10 @@
 
     //退出系统
     function _log_out() {
+//        //ajax先去执行退出操作
+//        $.get('<%#= url_for({:controller => "sys/common", :action => "logout", :format => "json", "_dom_id" => "null"}) %>', function(){
+//            window.location.reload();
+//        });
         window.location.href = '/login';
     }
 

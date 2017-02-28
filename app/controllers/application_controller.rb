@@ -43,16 +43,20 @@ class ApplicationController < ActionController::Base
 
   #判断是否需要登录
   def require_login
-    url = ''
-    # if request.get?
-    #   url = url_for params
+
+    redirect_to({:controller => 'sys/common', :action => 'login', :back_url => 'url'})
+
+    # byebug
+    # url = ''
+    # # if request.get?
+    # #   url = url_for params
+    # # end
+    # # 防止在login页面进入循环跳转
+    # if params[:controller].eql?('sys/common')&&params[:action].eql?('login')
+    #   true
+    # else
+    #   redirect_to({:controller => 'sys/common', :action => 'login', :back_url => url})
     # end
-    # 防止在login页面进入循环跳转
-    if params[:controller].eql?('sys/common')&&params[:action].eql?('login')
-      true
-    else
-      redirect_to({:controller => 'sys/common', :action => 'login', :back_url => url})
-    end
   end
 
 
