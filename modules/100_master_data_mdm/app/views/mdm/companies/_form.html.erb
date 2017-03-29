@@ -1,4 +1,4 @@
-<%= form_for(mdm_company) do |f| %>
+<%= form_for(mdm_company,{:url=>'/companies'}) do |f| %>
   <% if mdm_company.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(mdm_company.errors.count, "error") %> prohibited this mdm_company from being saved:</h2>

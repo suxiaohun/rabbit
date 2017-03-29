@@ -4,7 +4,7 @@ class Mdm::CompaniesController < ApplicationController
   # GET /mdm/companies
   # GET /mdm/companies.json
   def index
-    @mdm_companies = Mdm::Company.all
+    @mdm_companies = Mdm::Company.all.page params[:page]
   end
 
   # GET /mdm/companies/1
@@ -28,7 +28,7 @@ class Mdm::CompaniesController < ApplicationController
 
     respond_to do |format|
       if @mdm_company.save
-        format.html { redirect_to @mdm_company, notice: 'Company was successfully created.' }
+        format.html { redirect_to ({:action=>'index'}), notice: 'Company was successfully created.' }
         format.json { render :show, status: :created, location: @mdm_company }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class Mdm::CompaniesController < ApplicationController
   def update
     respond_to do |format|
       if @mdm_company.update(mdm_company_params)
-        format.html { redirect_to @mdm_company, notice: 'Company was successfully updated.' }
+        format.html { redirect_to ({:action=>'index'}), notice: 'Company was successfully updated.' }
         format.json { render :show, status: :ok, location: @mdm_company }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class Mdm::CompaniesController < ApplicationController
   def destroy
     @mdm_company.destroy
     respond_to do |format|
-      format.html { redirect_to mdm_companies_url, notice: 'Company was successfully destroyed.' }
+      format.html { redirect_to ({:action=>'index'}), notice: 'Company was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

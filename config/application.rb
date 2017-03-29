@@ -63,5 +63,7 @@ module Rabbit
       g.javascripts false
     end
 
+    config.i18n.default_locale = :zh
+
   end
 end
